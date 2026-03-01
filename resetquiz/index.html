@@ -766,6 +766,65 @@
     @media (max-width: 600px) {
       .intro-headline { font-size: 2.4rem; }
     }
+    /* ===== INTRO SCREEN (DESKTOP CENTER FIX) ===== */
+
+.intro-hero.intro-hero--single {
+  grid-template-columns: 1fr; /* force single column on desktop */
+}
+
+.intro-left.intro-left--center {
+  max-width: 880px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 110px 40px;
+  align-items: center;
+}
+
+.btn-primary.btn-primary--center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.intro-sub.intro-sub--tight {
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Modern accent styling */
+.intro-headline.intro-headline--cold em {
+  color: var(--terracotta);
+  text-shadow: 0 14px 40px rgba(193,101,74,0.12);
+}
+
+/* Experience strip */
+.intro-one-liner {
+  margin: 52px auto 0;
+  max-width: 760px;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--terracotta);
+  padding: 16px 18px;
+  font-size: 0.92rem;
+  color: var(--text-light);
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Mobile safety */
+@media (max-width: 520px) {
+  .intro-left.intro-left--center {
+    padding: 90px 22px;
+  }
+
+  .intro-one-liner {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+}
   </style>
 </head>
 <body>
@@ -807,15 +866,13 @@
 
       <p class="intro-note">10 questions · Takes 2–3 minutes · Instant personalized results</p>
 
-      <!-- Mobile-friendly, single-line “experience” line -->
-      <div class="intro-one-liner" aria-label="What you'll get">
-        Stop repeating the same relationship mistake. Take the quiz.”
+      <div class="intro-one-liner">
+        For women in their 30s who are tired of repeating the same relationship pattern — this gives you clarity in minutes.
       </div>
 
     </div>
   </div>
 </div>
-
     <!-- ===================== QUIZ SCREEN ===================== -->
     <div id="screen-quiz" class="screen">
       <div class="quiz-screen">
