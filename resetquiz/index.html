@@ -724,48 +724,52 @@
 
   <div class="quiz-wrapper">
 
-    <!-- ===================== INTRO SCREEN ===================== -->
-    <div id="screen-intro" class="screen active">
-      <div class="intro-hero">
-        <div class="intro-left">
-          <p class="eyebrow">Free 3-Minute Assessment</p>
-          <h1 class="intro-headline">
-            What's your<br>
-            <em>attachment<br>blueprint?</em>
-          </h1>
-          <p class="intro-sub">
-            You've read the books. You understand the theory. And you <strong>still find yourself repeating the same patterns</strong> in real relationships. This quiz doesn't just name your style — it shows you <strong>exactly what's running underneath it.</strong>
-          </p>
-          <button class="btn-primary" onclick="startQuiz()">
-            Discover My Blueprint
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </button>
-          <p class="intro-note">10 questions · 2–3 minutes · No fluff, no spam</p>
-          <div class="stats-row">
-            <div class="stat-item">
-              <div class="stat-dot"></div>
-              <span class="stat-text">Built from attachment-focused coaching methodology</span>
-            </div>
-            <div class="stat-item">
-              <div class="stat-dot"></div>
-              <span class="stat-text">Reveals the pattern, not just the label</span>
-            </div>
-            <div class="stat-item">
-              <div class="stat-dot"></div>
-              <span class="stat-text">You'll recognize yourself in every answer</span>
-            </div>
-          </div>
+<!-- ===================== INTRO SCREEN ===================== -->
+<div id="screen-intro" class="screen active">
+  <div class="intro-hero" style="grid-template-columns: 1fr;">
+    <div class="intro-left" style="max-width: 760px; margin: 0 auto; text-align: center; padding: 100px 40px;">
+      
+      <p class="eyebrow">Free 3-Minute Attachment Style Quiz</p>
+
+      <h1 class="intro-headline">
+        Discover Your<br>
+        <em>Attachment Style</em>
+      </h1>
+
+      <p class="intro-sub" style="max-width: 600px; margin: 0 auto 40px;">
+        Your attachment style shapes how you connect, handle conflict, and feel safe in relationships.
+        <br><br>
+        This quick assessment will help you understand your core pattern — and what it means for your dating life or long-term partnership.
+      </p>
+
+      <button class="btn-primary" onclick="startQuiz()">
+        Start the Quiz
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+
+      <p class="intro-note">10 questions · Takes 2–3 minutes · Instant results</p>
+
+      <div class="stats-row" style="max-width: 500px; margin: 60px auto 0;">
+        <div class="stat-item" style="justify-content: center;">
+          <div class="stat-dot"></div>
+          <span class="stat-text">Understand how you connect in relationships</span>
         </div>
-        <div class="intro-right">
-          <div class="intro-decorative">
-            <div class="intro-decorative-line"></div>
-            <p class="intro-decorative-quote">"The gap isn't knowledge. It's the wiring that runs below it — the part that activates before your mind catches up."</p>
-            <div class="intro-decorative-line"></div>
-            <p class="intro-decorative-meta">Robert Sawyer · Attachment Reset</p>
-          </div>
+        <div class="stat-item" style="justify-content: center;">
+          <div class="stat-dot"></div>
+          <span class="stat-text">Identify your strengths and blind spots</span>
+        </div>
+        <div class="stat-item" style="justify-content: center;">
+          <div class="stat-dot"></div>
+          <span class="stat-text">Get clarity on your next growth step</span>
         </div>
       </div>
+
     </div>
+  </div>
+</div>    
 
     <!-- ===================== QUIZ SCREEN ===================== -->
     <div id="screen-quiz" class="screen">
