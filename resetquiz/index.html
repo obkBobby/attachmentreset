@@ -20,7 +20,60 @@
       --text-light: #6B5B52;
       --border: #DDD4C6;
     }
+/* ===== Intro tweaks for cold traffic + mobile ===== */
 
+.intro-hero--single { grid-template-columns: 1fr; }
+
+.intro-left--center{
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 110px 40px;
+}
+
+.btn-primary--center{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Make headline visually engaging using existing theme */
+.intro-headline--cold em{
+  color: var(--terracotta);
+  text-shadow: 0 14px 40px rgba(193,101,74,0.12);
+}
+
+/* Tighten spacing feel (without removing readability) */
+.intro-sub--tight{
+  max-width: 660px;
+  margin: 0 auto 40px;
+}
+
+/* Single-line, mobile-optimized value line */
+.intro-one-liner{
+  margin: 52px auto 0;
+  max-width: 760px;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--terracotta);
+  padding: 16px 18px;
+  font-size: 0.92rem;
+  color: var(--text-light);
+  line-height: 1.4;
+
+  /* “one line” behavior */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* On small screens: allow wrap so it doesn't look cut off */
+@media (max-width: 520px){
+  .intro-one-liner{
+    white-space: normal;
+    text-overflow: clip;
+  }
+  .intro-left--center{ padding: 90px 22px; }
+}
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
@@ -726,27 +779,25 @@
 
 <!-- ===================== INTRO SCREEN ===================== -->
 <div id="screen-intro" class="screen active">
-  <div class="intro-hero" style="grid-template-columns: 1fr;">
-    <div class="intro-left" style="max-width: 760px; margin: 0 auto; text-align: center; padding: 110px 40px;">
+  <div class="intro-hero intro-hero--single">
+    <div class="intro-left intro-left--center">
 
       <p class="eyebrow">Free 3-Minute Attachment Assessment</p>
 
-      <h1 class="intro-headline">
-        Why do you react the way<br>
-        you do in relationships?
+      <h1 class="intro-headline intro-headline--cold">
+        Why does every relationship<br>
+        <em>end up feeling the same?</em>
       </h1>
 
-      <p class="intro-sub" style="max-width: 620px; margin: 0 auto 40px;">
-        Maybe you overthink when someone pulls away.  
-        Maybe you shut down when things get too close.  
-        Maybe you feel both.
-        <br><br>
+      <p class="intro-sub intro-sub--tight">
         Your attachment style quietly shapes how you handle intimacy, conflict, and emotional safety — often before you even realize it.
+        <br><br>
+        Maybe you overthink when someone pulls away. Maybe you shut down when things get too close. Maybe you feel both.
         <br><br>
         This assessment will show you your core pattern and what it means for your relationships.
       </p>
 
-      <button class="btn-primary" onclick="startQuiz()">
+      <button class="btn-primary btn-primary--center" onclick="startQuiz()">
         Discover My Attachment Style
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -756,24 +807,14 @@
 
       <p class="intro-note">10 questions · Takes 2–3 minutes · Instant personalized results</p>
 
-      <div class="stats-row" style="max-width: 540px; margin: 60px auto 0;">
-        <div class="stat-item" style="justify-content: center;">
-          <div class="stat-dot"></div>
-          <span class="stat-text">Understand your relationship triggers</span>
-        </div>
-        <div class="stat-item" style="justify-content: center;">
-          <div class="stat-dot"></div>
-          <span class="stat-text">Identify your strengths and blind spots</span>
-        </div>
-        <div class="stat-item" style="justify-content: center;">
-          <div class="stat-dot"></div>
-          <span class="stat-text">Learn what secure connection actually looks like</span>
-        </div>
+      <!-- Mobile-friendly, single-line “experience” line -->
+      <div class="intro-one-liner" aria-label="What you'll get">
+        Stop repeating the same relationship mistake. Take the quiz.”
       </div>
 
     </div>
   </div>
-</div> 
+</div>
 
     <!-- ===================== QUIZ SCREEN ===================== -->
     <div id="screen-quiz" class="screen">
