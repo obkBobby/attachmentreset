@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What's Your Attachment Blueprint? — Attachment Reset</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #F5F0E8;
+      --warm-white: #FAF7F2;
+      --taupe: #C4B8A8;
+      --taupe-dark: #8A7B6E;
+      --terracotta: #C1654A;
+      --terracotta-dark: #A0502E;
+      --charcoal: #2C2420;
+      --text: #3A2E28;
+      --text-light: #6B5B52;
+      --border: #DDD4C6;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--warm-white);
+      color: var(--text);
+      font-size: 17px;
+      line-height: 1.7;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(250, 247, 242, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--charcoal);
+      text-transform: uppercase;
+    }
+    .nav-cta {
+      background: var(--terracotta);
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 24px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--terracotta-dark); }
+
+    /* QUIZ WRAPPER */
+    .quiz-wrapper {
+      padding-top: 80px;
+      min-height: 100vh;
+    }
+
+    /* SCREENS */
+    .screen { display: none; }
+    .screen.active { display: block; }
+
+    /* =====================
+       INTRO SCREEN
+    ===================== */
+    .intro-hero {
+      min-height: calc(100vh - 80px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+    }
+    .intro-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 60px 80px 80px;
+      position: relative;
+    }
+    .intro-left::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(193,101,74,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .intro-right {
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 80px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .intro-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--warm-white) 0%, transparent 18%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .intro-decorative {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+    .intro-decorative-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--charcoal);
+      line-height: 1.5;
+      max-width: 340px;
+      margin: 0 auto 32px;
+    }
+    .intro-decorative-line {
+      width: 48px;
+      height: 2px;
+      background: var(--terracotta);
+      margin: 0 auto 20px;
+    }
+    .intro-decorative-meta {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--taupe-dark);
+    }
+    .stats-row {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .stat-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--terracotta);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .stat-text {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+    .intro-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 4vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.12;
+      color: var(--charcoal);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.35s;
+    }
+    .intro-headline em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+    .intro-sub {
+      font-size: 1rem;
+      color: var(--text-light);
+      line-height: 1.8;
+      max-width: 420px;
+      margin-bottom: 44px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.5s;
+    }
+    .intro-sub strong { color: var(--text); font-weight: 500; }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--terracotta);
+      color: #fff;
+      text-decoration: none;
+      padding: 18px 40px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+      width: fit-content;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.65s;
+    }
+    .btn-primary:hover { background: var(--terracotta-dark); transform: translateY(-1px); }
+    .btn-primary svg { width: 16px; height: 16px; }
+    .intro-note {
+      font-size: 0.78rem;
+      color: var(--taupe-dark);
+      letter-spacing: 0.03em;
+      margin-top: 14px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.8s;
+    }
+
+    /* =====================
+       QUIZ SCREEN
+    ===================== */
+    .quiz-screen {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 80px 40px 100px;
+    }
+
+    .progress-bar-wrap {
+      margin-bottom: 56px;
+    }
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .progress-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      font-weight: 500;
+    }
+    .progress-count {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: var(--taupe-dark);
+    }
+    .progress-track {
+      width: 100%;
+      height: 2px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--terracotta);
+      border-radius: 2px;
+      transition: width 0.5s ease;
+    }
+
+    .question-block {
+      animation: fadeUp 0.5s ease forwards;
+    }
+    .question-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--taupe-dark);
+      margin-bottom: 20px;
+    }
+    .question-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      font-weight: 300;
+      line-height: 1.25;
+      color: var(--charcoal);
+      margin-bottom: 40px;
+    }
+    .question-text em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .option-btn {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 22px 28px;
+      text-align: left;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.55;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .option-btn::before {
+      content: '';
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--border);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 1px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .option-btn:hover {
+      border-color: var(--taupe);
+      background: var(--warm-white);
+      transform: translateX(4px);
+    }
+    .option-btn:hover::before {
+      border-color: var(--terracotta);
+    }
+    .option-btn.selected {
+      border-color: var(--terracotta);
+      background: rgba(193, 101, 74, 0.06);
+    }
+    .option-btn.selected::before {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+    }
+
+    .quiz-nav {
+      margin-top: 40px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .btn-next {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--charcoal);
+      color: #fff;
+      border: none;
+      padding: 16px 36px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: background 0.2s, transform 0.15s, opacity 0.2s;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .btn-next.enabled {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .btn-next.enabled:hover {
+      background: var(--terracotta);
+      transform: translateY(-1px);
+    }
+    .btn-next svg { width: 16px; height: 16px; }
+
+    /* =====================
+       EMAIL GATE SCREEN
+    ===================== */
+    .gate-screen {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 100px 40px;
+      text-align: center;
+    }
+    .gate-teaser {
+      background: var(--cream);
+      border-left: 4px solid var(--terracotta);
+      padding: 28px 32px;
+      text-align: left;
+      margin-bottom: 48px;
+      animation: fadeUp 0.6s ease forwards;
+    }
+    .gate-teaser-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 12px;
+    }
+    .gate-teaser-style {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+    .gate-teaser-hint {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+    .gate-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--charcoal);
+      margin-bottom: 20px;
+      animation: fadeUp 0.6s ease forwards 0.15s;
+      opacity: 0;
+    }
+    .gate-headline em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+    .gate-sub {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      line-height: 1.8;
+      max-width: 480px;
+      margin: 0 auto 40px;
+      animation: fadeUp 0.6s ease forwards 0.3s;
+      opacity: 0;
+    }
+    .email-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 420px;
+      margin: 0 auto;
+      animation: fadeUp 0.6s ease forwards 0.45s;
+      opacity: 0;
+    }
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-align: left;
+    }
+    .form-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--taupe-dark);
+    }
+    .form-input {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 16px 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-input:focus {
+      border-color: var(--terracotta);
+    }
+    .form-input::placeholder {
+      color: var(--taupe);
+    }
+    .btn-reveal {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--terracotta);
+      color: #fff;
+      border: none;
+      padding: 20px 40px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 8px;
+    }
+    .btn-reveal:hover { background: var(--terracotta-dark); transform: translateY(-1px); }
+    .form-note {
+      font-size: 0.75rem;
+      color: var(--taupe-dark);
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    /* =====================
+       RESULT SCREEN
+    ===================== */
+    .result-screen {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 80px 40px 120px;
+    }
+    .result-header {
+      text-align: center;
+      margin-bottom: 64px;
+      animation: fadeUp 0.7s ease forwards;
+    }
+    .result-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 20px;
+    }
+    .result-type {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--charcoal);
+      margin-bottom: 16px;
+    }
+    .result-tagline {
+      font-size: 1rem;
+      color: var(--text-light);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    .result-divider {
+      width: 48px;
+      height: 2px;
+      background: var(--terracotta);
+      margin: 0 auto 48px;
+    }
+
+    .result-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-bottom: 48px;
+      animation: fadeUp 0.7s ease forwards 0.2s;
+      opacity: 0;
+    }
+    .result-card {
+      background: var(--cream);
+      padding: 36px 32px;
+    }
+    .result-card-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 16px;
+    }
+    .result-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .result-card li {
+      font-size: 0.92rem;
+      color: var(--text);
+      line-height: 1.6;
+      padding-left: 18px;
+      position: relative;
+    }
+    .result-card li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 6px;
+      height: 6px;
+      background: var(--terracotta);
+      border-radius: 50%;
+    }
+
+    .result-truth {
+      background: var(--charcoal);
+      padding: 44px 48px;
+      margin-bottom: 48px;
+      animation: fadeUp 0.7s ease forwards 0.35s;
+      opacity: 0;
+    }
+    .result-truth p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      font-weight: 300;
+      color: #F5EEE6;
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+    .result-truth .truth-credit {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--taupe);
+    }
+
+    .result-shift {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 56px;
+      animation: fadeUp 0.7s ease forwards 0.5s;
+      opacity: 0;
+    }
+    .result-shift-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 20px;
+    }
+    .result-shift p {
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.8;
+      max-width: 600px;
+    }
+
+    .result-cta {
+      text-align: center;
+      animation: fadeUp 0.7s ease forwards 0.65s;
+      opacity: 0;
+    }
+    .result-cta-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--charcoal);
+      margin-bottom: 16px;
+    }
+    .result-cta-headline em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+    .result-cta p {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      line-height: 1.8;
+      max-width: 520px;
+      margin: 0 auto 32px;
+    }
+    .btn-apply {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--terracotta);
+      color: #fff;
+      text-decoration: none;
+      padding: 20px 48px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-apply:hover { background: var(--terracotta-dark); transform: translateY(-2px); }
+    .result-cta-note {
+      margin-top: 16px;
+      font-size: 0.78rem;
+      color: var(--taupe-dark);
+    }
+    .result-cta-note a {
+      color: var(--taupe-dark);
+      text-decoration: underline;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .intro-hero { grid-template-columns: 1fr; }
+      .intro-left { padding: 60px 32px; }
+      .intro-right { display: none; }
+      .result-body { grid-template-columns: 1fr; }
+      .quiz-screen, .gate-screen, .result-screen { padding: 60px 24px 80px; }
+      .result-truth { padding: 32px 28px; }
+    }
+
+    @media (max-width: 600px) {
+      .intro-headline { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Attachment Reset</div>
+    <a href="https://stan.store/RobertSawyerCo/p/relationsync-11-coaching" class="nav-cta">Apply Now</a>
+  </nav>
+
+  <div class="quiz-wrapper">
+
+    <!-- ===================== INTRO SCREEN ===================== -->
+    <div id="screen-intro" class="screen active">
+      <div class="intro-hero">
+        <div class="intro-left">
+          <p class="eyebrow">Free 3-Minute Assessment</p>
+          <h1 class="intro-headline">
+            What's your<br>
+            <em>attachment<br>blueprint?</em>
+          </h1>
+          <p class="intro-sub">
+            You've read the books. You understand the theory. And you <strong>still find yourself repeating the same patterns</strong> in real relationships. This quiz doesn't just name your style — it shows you <strong>exactly what's running underneath it.</strong>
+          </p>
+          <button class="btn-primary" onclick="startQuiz()">
+            Discover My Blueprint
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+          <p class="intro-note">10 questions · 2–3 minutes · No fluff, no spam</p>
+          <div class="stats-row">
+            <div class="stat-item">
+              <div class="stat-dot"></div>
+              <span class="stat-text">Built from attachment-focused coaching methodology</span>
+            </div>
+            <div class="stat-item">
+              <div class="stat-dot"></div>
+              <span class="stat-text">Reveals the pattern, not just the label</span>
+            </div>
+            <div class="stat-item">
+              <div class="stat-dot"></div>
+              <span class="stat-text">You'll recognize yourself in every answer</span>
+            </div>
+          </div>
+        </div>
+        <div class="intro-right">
+          <div class="intro-decorative">
+            <div class="intro-decorative-line"></div>
+            <p class="intro-decorative-quote">"The gap isn't knowledge. It's the wiring that runs below it — the part that activates before your mind catches up."</p>
+            <div class="intro-decorative-line"></div>
+            <p class="intro-decorative-meta">Robert Sawyer · Attachment Reset</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== QUIZ SCREEN ===================== -->
+    <div id="screen-quiz" class="screen">
+      <div class="quiz-screen">
+        <div class="progress-bar-wrap">
+          <div class="progress-meta">
+            <span class="progress-label">Your Attachment Blueprint</span>
+            <span class="progress-count" id="progress-count">1 of 10</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-fill" style="width: 10%"></div>
+          </div>
+        </div>
+
+        <div id="question-container"></div>
+
+        <div class="quiz-nav">
+          <button class="btn-next" id="btn-next" onclick="nextQuestion()">
+            Continue
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== EMAIL GATE SCREEN ===================== -->
+    <div id="screen-gate" class="screen">
+      <div class="gate-screen">
+        <div class="gate-teaser" id="gate-teaser">
+          <p class="gate-teaser-label">You're showing strong signs of</p>
+          <p class="gate-teaser-style" id="gate-style-name">Anxious Attachment</p>
+          <p class="gate-teaser-hint" id="gate-style-hint">You feel things deeply and you give everything in relationships. But somewhere underneath that... there's a fear that it's never quite enough.</p>
+        </div>
+
+        <h2 class="gate-headline">
+          Your full blueprint<br>
+          is <em>one step away.</em>
+        </h2>
+        <p class="gate-sub">
+          Enter your name and email to receive your complete attachment breakdown — including what's driving the pattern, what it costs you, and the specific shifts that interrupt it.
+        </p>
+
+        <div class="email-form">
+          <div class="form-field">
+            <label class="form-label" for="input-name">First Name</label>
+            <input class="form-input" type="text" id="input-name" placeholder="Your first name">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="input-email">Email Address</label>
+            <input class="form-input" type="email" id="input-email" placeholder="Your best email">
+          </div>
+          <button class="btn-reveal" onclick="revealResult()">
+            Reveal My Full Blueprint
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+          <p class="form-note">No spam. Your breakdown arrives in your inbox within minutes.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== RESULT SCREEN ===================== -->
+    <div id="screen-result" class="screen">
+      <div class="result-screen">
+        <div class="result-header">
+          <p class="result-eyebrow">Your Attachment Blueprint</p>
+          <h2 class="result-type" id="result-type">The Anxious Attacher</h2>
+          <div class="result-divider"></div>
+          <p class="result-tagline" id="result-tagline">You love hard, feel everything, and carry the weight of relationships others don't even notice they're putting down.</p>
+        </div>
+
+        <div class="result-body" id="result-body">
+          <!-- populated by JS -->
+        </div>
+
+        <div class="result-truth" id="result-truth">
+          <!-- populated by JS -->
+        </div>
+
+        <div class="result-shift" id="result-shift">
+          <!-- populated by JS -->
+        </div>
+
+        <div class="result-cta">
+          <h3 class="result-cta-headline">
+            This is the <em>intervention</em><br>that ends the cycle.
+          </h3>
+          <p>Attachment Reset is the private, high-touch 90-day intensive for people who understand their pattern intellectually and are ready to actually interrupt it. Not talk therapy. Not a course. A reset.</p>
+          <a href="https://stan.store/RobertSawyerCo/p/relationsync-11-coaching" class="btn-apply" target="_blank" rel="noopener">
+            Apply for Attachment Reset
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <p class="result-cta-note">
+            Not sure yet? <a href="https://stan.store/RobertSawyerCo/p/your-path-to-better-relationships" target="_blank">Book a free 20-minute consult</a> — no pitch, just a conversation.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end quiz-wrapper -->
+
+  <script>
+    // ===========================
+    // QUIZ DATA
+    // ===========================
+    // Score keys: A = Anxious, V = Avoidant, D = Disorganized (Fearful-Avoidant), S = Secure
+
+    const questions = [
+      {
+        eyebrow: "Question 01 — The Waiting",
+        text: "Your partner hasn't replied in four hours. It's not unusual for them. What's your honest first instinct?",
+        options: [
+          { text: "I feel it immediately — a tightness I can't ignore. I check the phone. I wonder what I did.", score: "A" },
+          { text: "I notice it and then I don't. I'm busy with my own life and they'll reply when they reply.", score: "S" },
+          { text: "My mind races through two possibilities: something is wrong with them or something is wrong with me.", score: "D" },
+          { text: "Honestly? A flicker of relief. I don't love when it's constant anyway.", score: "V" }
+        ]
+      },
+      {
+        eyebrow: "Question 02 — The Pattern",
+        text: "Looking back at your last few relationships, what's the <em>most honest</em> description of how they ended?",
+        options: [
+          { text: "I gave everything and somehow it still wasn't enough to make them stay.", score: "A" },
+          { text: "I could see it coming — we just gradually grew apart and I let it happen.", score: "V" },
+          { text: "They ended badly — too much intensity, then nothing at all.", score: "D" },
+          { text: "They ended when they should have. I chose from clarity, not desperation.", score: "S" }
+        ]
+      },
+      {
+        eyebrow: "Question 03 — Real Intimacy",
+        text: "Someone who's genuinely good for you starts showing up consistently. They're reliable, they're interested, and they want to go deeper. Your gut reaction is:",
+        options: [
+          { text: "I lean in hard. But I'm also watching carefully for when it stops.", score: "A" },
+          { text: "I feel myself pull back a little. Too much too fast makes me want space.", score: "V" },
+          { text: "I feel pulled toward it and terrified by it at the same time.", score: "D" },
+          { text: "I let it land. I don't need to test it — I can just be here.", score: "S" }
+        ]
+      },
+      {
+        eyebrow: "Question 04 — The Chemistry",
+        text: "The people who have pulled you in the hardest — the ones you couldn't stop thinking about — what did they have in common?",
+        options: [
+          { text: "They were unpredictable. Hot and cold. I never quite knew where I stood.", score: "A" },
+          { text: "They needed me. I was the stable one, the one keeping things together.", score: "V" },
+          { text: "They were as complicated as I was. Intensity felt like connection.", score: "D" },
+          { text: "They were honest and consistent. The chemistry came from actually trusting them.", score: "S" }
+        ]
+      },
+      {
+        eyebrow: "Question 05 — Under Conflict",
+        text: "There's a real disagreement on the table — not a small one. How do you move through it?",
+        options: [
+          { text: "I need to resolve it now. An unresolved argument feels like the beginning of the end.", score: "A" },
+          { text: "I go quiet. I process alone first. Pushing me in the moment just makes me shut down.", score: "V" },
+          { text: "I escalate and then disappear. Big feelings, then wall.", score: "D" },
+          { text: "I can sit with discomfort long enough to say what's actually true for me.", score: "S" }
+        ]
+      },
+      {
+        eyebrow: "Question 06 — Red Flags",
+        text: "You notice something that feels off — a red flag you can't quite name but can't quite dismiss. What do you do?",
+        options: [
+          { text: "I rationalize it. The chemistry is too strong to walk away from on something uncertain.", score: "A" },
+          { text: "I note it and move on. I don't want to make it a bigger deal than it is.", score: "V" },
+          { text: "I fixate on it. It confirms something I always feared but hoped wasn't true.", score: "D" },
+          { text: "I name it directly. Not dramatically — just clearly, to see how they respond.", score: "S" }
+        ]
+      },
+      {
+        eyebrow: "Question 07 — Your Standards",
+        text: "Someone you're interested in does something that crosses one of your standards. How do you handle it?",
+        options: [
+          { text: "I bring it up but then quickly soften it. I don't want to push them away.", score: "A" },
+          { text: "I don't bring it up. I just quietly withdraw. Actions over words.", score: "V" },
+          { text: "I go back and forth — hold the line, then question if I'm being too rigid.", score: "D" },
+          { text: "I hold the line. Calmly, clearly. If they can't meet me there, I act accordingly.", score: "S" }
+        ]
+      },
+      {
+        eyebrow: "Question 08 — Your Inner Narrative",
+        text: "When a relationship ends, what does the voice inside your head tell you most loudly?",
+        options: [
+          { text: "What did I do wrong? If I had just done something differently, it would have worked.", score: "A" },
+          { text: "It wasn't meant to be. I'll be fine — I was probably more comfortable alone anyway.", score: "V" },
+          { text: "I knew this would happen. Part of me always waits for it to fall apart.", score: "D" },
+          { text: "It's disappointing, but it wasn't right. I trust I'll figure out what's next.", score: "S" }
+        ]
+      },
+      {
+        eyebrow: "Question 09 — Being Alone",
+        text: "How honest is this sentence: 'I am genuinely comfortable being alone — not just tolerating it, but actually at peace with it.'",
+        options: [
+          { text: "Not very. Alone feels like something is missing, even when everything else is fine.", score: "A" },
+          { text: "Very honest. Alone is actually where I feel most like myself.", score: "V" },
+          { text: "Sometimes. Other times alone feels loud and I don't know how to quiet it.", score: "D" },
+          { text: "Pretty honest. I have a full life. A relationship adds to it, not defines it.", score: "S" }
+        ]
+      },
+      {
+        eyebrow: "Question 10 — The Shift",
+        text: "What would feel most like a genuine change — not just understanding your pattern, but actually living differently?",
+        options: [
+          { text: "Feeling the urge to chase and not acting on it. Staying with myself instead of spiraling.", score: "A" },
+          { text: "Letting someone in without finding an exit before they can leave first.", score: "V" },
+          { text: "Trusting that connection doesn't have to be chaotic to be real.", score: "D" },
+          { text: "Continuing to choose from clarity — and deepening that capacity over time.", score: "S" }
+        ]
+      }
+    ];
+
+    // ===========================
+    // RESULT PROFILES
+    // ===========================
+    const results = {
+      A: {
+        name: "The Anxious Attacher",
+        tagline: "You love hard, feel everything, and carry the weight of relationships others don't even notice they're putting down.",
+        teaserName: "Anxious Attachment",
+        teaserHint: "You feel things deeply and you give everything in relationships. But somewhere underneath that... there's a fear it's never quite enough.",
+        patterns: [
+          "Spiraling when someone goes quiet, even briefly",
+          "Drafting texts, then deleting them, then drafting again",
+          "Rationalizing red flags because the connection feels too rare to risk",
+          "Needing consistent reassurance to feel secure",
+          "Overextending to keep someone from pulling away",
+          "Recreating the same dynamic with different people"
+        ],
+        wants: [
+          "To feel grounded when they haven't texted back",
+          "To hold your standards without guilt or fear",
+          "To walk away from the wrong person without collapsing",
+          "To choose from clarity, not chemistry addiction",
+          "Security within yourself — not just in the relationship"
+        ],
+        truth: "The part of you that reaches out, over-explains, and monitors signals — it's not neediness. It's a nervous system that learned connection is unpredictable. That wiring formed before you had a choice. Now you do.",
+        shift: "The shift isn't learning to care less. It's building enough internal security that you stop needing them to regulate what you feel. Anxious attachment doesn't mean you're broken — it means the work is in building a home inside yourself first."
+      },
+      V: {
+        name: "The Avoidant Attacher",
+        tagline: "You're capable of deep loyalty and real love — but something in you keeps the door half-open, just in case you need to leave.",
+        teaserName: "Avoidant Attachment",
+        teaserHint: "You value independence. You're composed, capable, self-sufficient. But sometimes that self-sufficiency is also a wall.",
+        patterns: [
+          "Feeling suddenly claustrophobic when someone gets too close",
+          "Pulling away right when things start to feel real",
+          "Finding reasons someone isn't quite right once they're committed",
+          "Processing emotions alone — and rarely sharing the full picture",
+          "Preferring the idea of connection to the vulnerability of it",
+          "Being the stable one, but resenting the ask"
+        ],
+        wants: [
+          "To let someone in without waiting for them to fail you",
+          "To stay present in a relationship without the exit strategy",
+          "To communicate what's actually happening inside you",
+          "To choose closeness without it feeling like losing yourself",
+          "Connection that doesn't require performing ease"
+        ],
+        truth: "The distance isn't coldness. It's self-protection that formed when depending on others felt unsafe. You learned to be self-sufficient because you had to be. That skill kept you safe — and it's now keeping people out.",
+        shift: "Avoidant attachment isn't about not wanting love. It's about your nervous system having learned to associate closeness with danger. The work is teaching your system that it's safe to stay — that vulnerability doesn't have to mean losing control."
+      },
+      D: {
+        name: "The Fearful-Avoidant Attacher",
+        tagline: "You want deep connection and you're terrified of it at the same time. You've learned to expect the thing you most want to hurt you.",
+        teaserName: "Fearful-Avoidant Attachment",
+        teaserHint: "You're pulled toward connection and pushed away from it simultaneously. It's not indecision — it's a nervous system caught between two fears.",
+        patterns: [
+          "Intense connection followed by sudden shutdown",
+          "Wanting closeness, then finding it overwhelming once it arrives",
+          "Expecting abandonment from the people who show up consistently",
+          "Testing partners — unconsciously creating distance to see if they'll stay",
+          "Catastrophizing during conflict: this is over, I knew it",
+          "Feeling most alive in relationships with high intensity and high uncertainty"
+        ],
+        wants: [
+          "To trust that real connection doesn't have to be chaotic",
+          "To stay when someone is genuinely good — without self-destructing",
+          "To recognize a healthy dynamic and not run from it",
+          "To feel safe enough to be fully seen by someone",
+          "Consistency — giving and receiving it"
+        ],
+        truth: "Fearful-avoidant attachment is the most complex blueprint — it holds the anxiety of anxious attachment and the self-protection of avoidant attachment simultaneously. It's not instability. It's a nervous system that has never had a safe model for what real intimacy looks like.",
+        shift: "The breakthrough for fearful-avoidant attachment isn't forcing yourself to stay or push through. It's learning to recognize the moment your nervous system triggers — and having the capacity to pause there, instead of acting from it."
+      },
+      S: {
+        name: "The Securely Attached",
+        tagline: "You move through relationships with a groundedness others are still working toward. The work now is deepening it — and protecting it.",
+        teaserName: "Secure Attachment",
+        teaserHint: "You have a strong foundation. But secure attachment isn't a destination — it's a practice. Even the securely attached have edges worth exploring.",
+        patterns: [
+          "Communicating needs clearly — most of the time",
+          "Recovering from conflict without needing to fix it immediately",
+          "Tolerating uncertainty without catastrophizing",
+          "Choosing partners who are capable of reciprocity",
+          "Setting limits without excessive guilt",
+          "Feeling complete outside of a relationship"
+        ],
+        wants: [
+          "To deepen the capacity, not just maintain it",
+          "To recognize when stress pulls you toward insecure patterns",
+          "A partner who can actually meet you where you are",
+          "Continued growth — not just stability",
+          "To choose from clarity, always"
+        ],
+        truth: "Secure attachment isn't the absence of fear or difficulty. It's the ability to move through both without losing yourself. You've built something real — and there's almost always a layer underneath it worth understanding.",
+        shift: "The most securely attached people aren't finished. They're curious. If this is you, the work isn't starting from scratch — it's refining your blueprint so that you can stay this grounded even when someone truly challenges it."
+      }
+    };
+
+    // ===========================
+    // QUIZ STATE
+    // ===========================
+    let currentQuestion = 0;
+    let selectedAnswer = null;
+    let scores = { A: 0, V: 0, D: 0, S: 0 };
+    let resultKey = null;
+
+    function startQuiz() {
+      showScreen('screen-quiz');
+      renderQuestion();
+    }
+
+    function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderQuestion() {
+      const q = questions[currentQuestion];
+      selectedAnswer = null;
+
+      // Update progress
+      const pct = ((currentQuestion + 1) / questions.length) * 100;
+      document.getElementById('progress-fill').style.width = pct + '%';
+      document.getElementById('progress-count').textContent = `${currentQuestion + 1} of ${questions.length}`;
+
+      // Disable next btn
+      const btn = document.getElementById('btn-next');
+      btn.classList.remove('enabled');
+      btn.textContent = currentQuestion < questions.length - 1 ? 'Continue' : 'See My Results';
+      btn.innerHTML = currentQuestion < questions.length - 1
+        ? `Continue <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`
+        : `See My Results <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`;
+
+      // Render question
+      const container = document.getElementById('question-container');
+      container.innerHTML = `
+        <div class="question-block">
+          <p class="question-eyebrow">${q.eyebrow}</p>
+          <h2 class="question-text">${q.text}</h2>
+          <div class="options-list">
+            ${q.options.map((opt, i) => `
+              <button class="option-btn" onclick="selectOption(this, '${opt.score}')">
+                <span>${opt.text}</span>
+              </button>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function selectOption(el, scoreKey) {
+      document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedAnswer = scoreKey;
+      document.getElementById('btn-next').classList.add('enabled');
+    }
+
+    function nextQuestion() {
+      if (!selectedAnswer) return;
+      scores[selectedAnswer]++;
+
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        renderQuestion();
+      } else {
+        // Tally result
+        resultKey = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+        showGate();
+      }
+    }
+
+    function showGate() {
+      const result = results[resultKey];
+      document.getElementById('gate-style-name').textContent = result.teaserName;
+      document.getElementById('gate-style-hint').textContent = result.teaserHint;
+      showScreen('screen-gate');
+    }
+
+    function revealResult() {
+      const name = document.getElementById('input-name').value.trim();
+      const email = document.getElementById('input-email').value.trim();
+
+      if (!email || !email.includes('@')) {
+        document.getElementById('input-email').focus();
+        document.getElementById('input-email').style.borderColor = 'var(--terracotta)';
+        return;
+      }
+
+      // Here you would POST to your email provider (Mailchimp, ConvertKit, etc.)
+      // Example: fetch('/api/subscribe', { method: 'POST', body: JSON.stringify({ name, email, result: resultKey }) });
+      console.log('Subscribe:', { name, email, result: resultKey });
+
+      buildResult();
+      showScreen('screen-result');
+    }
+
+    function buildResult() {
+      const r = results[resultKey];
+
+      document.getElementById('result-type').textContent = r.name;
+      document.getElementById('result-tagline').textContent = r.tagline;
+
+      document.getElementById('result-body').innerHTML = `
+        <div class="result-card">
+          <p class="result-card-label">The Pattern You're Running</p>
+          <ul>${r.patterns.map(p => `<li>${p}</li>`).join('')}</ul>
+        </div>
+        <div class="result-card">
+          <p class="result-card-label">What You Actually Want</p>
+          <ul>${r.wants.map(w => `<li>${w}</li>`).join('')}</ul>
+        </div>
+      `;
+
+      document.getElementById('result-truth').innerHTML = `
+        <p>${r.truth}</p>
+        <span class="truth-credit">Attachment Reset · Robert Sawyer</span>
+      `;
+
+      document.getElementById('result-shift').innerHTML = `
+        <p class="result-shift-label">The Shift That's Available to You</p>
+        <p>${r.shift}</p>
+      `;
+    }
+  </script>
+
+</body>
+</html>
