@@ -1,0 +1,367 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0f1f2e;--navy2:#162840;--gold:#c8a96e;--light:#f5f4f0;--white:#ffffff;--text:#1a1a1a;--muted:#5c5c5c;--border:#e0ddd6}
+.site{font-family:var(--font-sans);background:var(--white);color:var(--text)}
+.ticker{background:var(--navy);padding:10px 48px;display:flex;align-items:center;gap:16px}
+.ticker-label{background:var(--gold);color:var(--navy);font-size:11px;font-weight:500;padding:3px 10px;border-radius:2px;white-space:nowrap;letter-spacing:1px}
+.ticker-text{font-size:13px;color:rgba(255,255,255,0.7);white-space:nowrap}
+.ticker-cta{margin-left:auto;font-size:12px;color:var(--gold);white-space:nowrap;cursor:pointer;text-decoration:underline}
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;border-bottom:1px solid var(--border);background:var(--white)}
+.nav-logo{font-size:22px;font-weight:500;color:var(--navy);letter-spacing:-0.5px}
+.nav-logo em{font-style:normal;color:var(--gold)}
+.nav-links{display:flex;gap:36px}
+.nav-links a{font-size:13px;color:var(--muted);text-decoration:none;letter-spacing:0.5px;text-transform:uppercase;cursor:pointer}
+.nav-links a:hover{color:var(--navy)}
+.nav-cta{background:var(--navy);color:white;border:none;padding:10px 24px;font-size:13px;cursor:pointer;font-family:var(--font-sans);letter-spacing:0.3px}
+.nav-cta:hover{background:var(--navy2)}
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:520px}
+.hero-left{background:var(--navy);padding:72px 64px;display:flex;flex-direction:column;justify-content:center}
+.hero-eyebrow{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.hero-left h1{font-size:54px;font-weight:500;color:white;line-height:1.05;letter-spacing:-1.5px;margin-bottom:24px}
+.hero-left h1 em{font-style:italic;color:var(--gold)}
+.hero-left p{font-size:17px;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:36px;max-width:440px}
+.hero-btns{display:flex;gap:12px}
+.btn-gold{background:var(--gold);color:var(--navy);border:none;padding:14px 28px;font-size:14px;font-weight:500;cursor:pointer;font-family:var(--font-sans)}
+.btn-ghost-white{background:transparent;color:white;border:1px solid rgba(255,255,255,0.25);padding:14px 28px;font-size:14px;cursor:pointer;font-family:var(--font-sans)}
+.btn-ghost-white:hover{border-color:rgba(255,255,255,0.5)}
+.hero-right{background:var(--light);padding:72px 64px;display:flex;flex-direction:column;justify-content:center;gap:40px}
+.hero-stat-item{border-left:3px solid var(--gold);padding-left:20px}
+.hero-stat-num{font-size:42px;font-weight:500;color:var(--navy);letter-spacing:-1px;line-height:1}
+.hero-stat-label{font-size:14px;color:var(--muted);margin-top:6px}
+.announce-bar{background:var(--light);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:14px 48px;display:flex;align-items:center;justify-content:center;gap:24px}
+.announce-bar p{font-size:13px;color:var(--muted)}
+.announce-bar strong{color:var(--navy)}
+.announce-bar a{font-size:13px;color:var(--navy);font-weight:500;cursor:pointer;text-decoration:underline}
+.section{padding:80px 48px}
+.section-eyebrow{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.section h2{font-size:40px;font-weight:500;color:var(--navy);letter-spacing:-1px;line-height:1.15;margin-bottom:20px}
+.section h2 em{font-style:italic;color:var(--gold)}
+.section-intro{font-size:17px;color:var(--muted);line-height:1.8;max-width:580px;margin-bottom:48px}
+.intro-section{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding:80px 48px;background:var(--white)}
+.intro-visual{background:var(--navy);border-radius:4px;padding:48px;display:flex;flex-direction:column;gap:24px}
+.intro-visual-item{display:flex;align-items:flex-start;gap:16px}
+.intro-visual-dot{width:8px;height:8px;background:var(--gold);border-radius:50%;margin-top:6px;flex-shrink:0}
+.intro-visual-text{font-size:15px;color:rgba(255,255,255,0.75);line-height:1.7}
+.intro-visual-text strong{color:white;display:block;font-weight:500;margin-bottom:4px}
+.stats-section{background:var(--navy);padding:64px 48px}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.08)}
+.stat-block{background:var(--navy);padding:48px 40px;text-align:center}
+.stat-num{font-size:56px;font-weight:500;color:var(--gold);letter-spacing:-2px;line-height:1}
+.stat-unit{font-size:24px;color:var(--gold)}
+.stat-label{font-size:14px;color:rgba(255,255,255,0.5);margin-top:12px;text-transform:uppercase;letter-spacing:1px}
+.services-section{padding:80px 48px;background:var(--light)}
+.services-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;background:var(--border);margin-top:48px}
+.service-card{background:var(--white);padding:40px;cursor:pointer;transition:background 0.15s}
+.service-card:hover{background:#fafaf8}
+.service-num{font-size:11px;letter-spacing:2px;color:var(--gold);margin-bottom:16px;text-transform:uppercase}
+.service-card h3{font-size:22px;font-weight:500;color:var(--navy);margin-bottom:12px;letter-spacing:-0.3px}
+.service-tag{display:inline-block;font-size:11px;padding:3px 10px;background:var(--light);color:var(--muted);border-radius:2px;margin-bottom:14px;letter-spacing:0.5px}
+.service-card p{font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:20px}
+.service-price{font-size:14px;font-weight:500;color:var(--navy)}
+.service-link{font-size:13px;color:var(--gold);cursor:pointer;text-decoration:underline}
+.service-card.featured{background:var(--navy)}
+.service-card.featured h3{color:white}
+.service-card.featured .service-tag{background:rgba(200,169,110,0.15);color:var(--gold)}
+.service-card.featured p{color:rgba(255,255,255,0.55)}
+.service-card.featured .service-price{color:var(--gold)}
+.service-card.featured .service-link{color:rgba(255,255,255,0.5)}
+.how-section{padding:80px 48px;background:var(--white)}
+.how-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:48px;border:1px solid var(--border)}
+.how-step{padding:36px 28px;border-right:1px solid var(--border)}
+.how-step:last-child{border-right:none}
+.step-num{font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:12px}
+.step-line{width:32px;height:2px;background:var(--gold);margin-bottom:20px}
+.step-title{font-size:17px;font-weight:500;color:var(--navy);margin-bottom:10px}
+.step-desc{font-size:14px;color:var(--muted);line-height:1.7}
+.about-section{display:grid;grid-template-columns:1fr 1fr;background:var(--light)}
+.about-left{padding:80px 64px;background:var(--navy)}
+.about-left .section-eyebrow{color:var(--gold)}
+.about-left h2{font-size:38px;font-weight:500;color:white;letter-spacing:-0.8px;line-height:1.15;margin-bottom:20px}
+.about-left h2 em{font-style:italic;color:var(--gold)}
+.about-left p{font-size:16px;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:40px}
+.about-right{padding:80px 64px;display:flex;flex-direction:column;gap:32px;justify-content:center}
+.about-card{background:var(--white);padding:32px;border:1px solid var(--border)}
+.about-header{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.about-initials{width:48px;height:48px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;color:var(--gold);flex-shrink:0}
+.about-name{font-size:17px;font-weight:500;color:var(--navy)}
+.about-role{font-size:12px;color:var(--muted);letter-spacing:0.3px;margin-top:2px}
+.about-bio{font-size:14px;color:var(--muted);line-height:1.75}
+.logos-section{padding:48px;background:var(--navy);border-top:1px solid rgba(255,255,255,0.06)}
+.logos-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);text-align:center;margin-bottom:32px}
+.logos-row{display:flex;justify-content:center;align-items:center;gap:48px;flex-wrap:wrap}
+.logo-pill{font-size:13px;font-weight:500;color:rgba(255,255,255,0.25);letter-spacing:1px;text-transform:uppercase}
+.contact-section{display:grid;grid-template-columns:1fr 1fr}
+.contact-left{background:var(--navy2);padding:80px 64px}
+.contact-left .section-eyebrow{color:var(--gold)}
+.contact-left h2{font-size:36px;font-weight:500;color:white;letter-spacing:-0.8px;line-height:1.2;margin-bottom:16px}
+.contact-left p{font-size:15px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:40px}
+.contact-details{display:flex;flex-direction:column;gap:20px}
+.contact-detail .label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:4px}
+.contact-detail .val{font-size:15px;color:var(--gold)}
+.contact-right{background:var(--light);padding:80px 64px}
+.contact-right h3{font-size:22px;font-weight:500;color:var(--navy);margin-bottom:32px;letter-spacing:-0.3px}
+.form{display:flex;flex-direction:column;gap:16px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.field input,.field textarea,.field select{background:white;border:1px solid var(--border);padding:12px 14px;font-size:14px;color:var(--text);font-family:var(--font-sans);outline:none;border-radius:0}
+.field input:focus,.field textarea:focus{border-color:var(--navy)}
+.field textarea{height:90px;resize:none}
+.form-submit{background:var(--navy);color:white;border:none;padding:14px;font-size:14px;font-weight:500;cursor:pointer;font-family:var(--font-sans);letter-spacing:0.3px;margin-top:4px}
+.form-submit:hover{background:var(--navy2)}
+footer{background:#0a1520;padding:40px 48px;display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;gap:32px}
+.footer-logo{font-size:18px;font-weight:500;color:white}
+.footer-logo em{font-style:normal;color:var(--gold)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.2);text-align:center}
+.footer-links{display:flex;gap:24px;justify-content:flex-end}
+.footer-links a{font-size:12px;color:rgba(255,255,255,0.3);text-decoration:none;cursor:pointer}
+.footer-links a:hover{color:rgba(255,255,255,0.6)}
+</style>
+
+<div class="site">
+  <div class="ticker">
+    <span class="ticker-label">NEW</span>
+    <span class="ticker-text">Keynote: "The Human Operating System" — now booking for Q3 & Q4 2025</span>
+    <span class="ticker-cta">Inquire now</span>
+  </div>
+
+  <nav>
+    <div class="nav-logo">More <em>Human</em></div>
+    <div class="nav-links">
+      <a>Solutions</a>
+      <a>About us</a>
+      <a>Our approach</a>
+      <a>Insights</a>
+    </div>
+    <button class="nav-cta">Talk to an expert</button>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Human performance & organizational culture</div>
+      <h1>Real results driven by <em>more human</em> organizations.</h1>
+      <p>We partner with leaders navigating digital transformation — building the psychological infrastructure that strategy depends on.</p>
+      <div class="hero-btns">
+        <button class="btn-gold">Start the conversation</button>
+        <button class="btn-ghost-white">See our approach</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">4 Ps</div>
+        <div class="hero-stat-label">People · Process · Proactivity · Purpose</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">2</div>
+        <div class="hero-stat-label">Disciplines: clinical psychology + creative performance</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">1</div>
+        <div class="hero-stat-label">Mission: organizations that are measurably more human</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="announce-bar">
+    <p><strong>Webinar:</strong> The 3 Hidden Culture Killers Inside Leadership Teams &nbsp;|&nbsp; <a>Register now</a></p>
+  </div>
+
+  <div class="intro-section">
+    <div>
+      <div class="section-eyebrow">Why it matters</div>
+      <h2 style="font-size:38px;font-weight:500;color:var(--navy);letter-spacing:-0.8px;line-height:1.15;margin-bottom:20px">Your transformation plan isn't failing — <em style="font-style:italic;color:var(--gold)">your human infrastructure is.</em></h2>
+      <p style="font-size:16px;color:var(--muted);line-height:1.8;margin-bottom:28px">Organizations pour millions into technology and strategy. But without a fortified human layer underneath, transformation stalls — and people burn out. We fix that by integrating trauma-informed systems design with applied creative resilience.</p>
+      <p style="font-size:16px;color:var(--muted);line-height:1.8;margin-bottom:32px">What if your people weren't just surviving change — but activating it?</p>
+      <button style="background:var(--navy);color:white;border:none;padding:12px 24px;font-size:14px;cursor:pointer;font-family:var(--font-sans)">See our approach</button>
+    </div>
+    <div class="intro-visual">
+      <div class="intro-visual-item">
+        <div class="intro-visual-dot"></div>
+        <div class="intro-visual-text"><strong>Trauma-informed systems design</strong>Clinical assessment of cultural friction, communication bottlenecks, and behavioral patterns that traditional consulting misses.</div>
+      </div>
+      <div class="intro-visual-item">
+        <div class="intro-visual-dot"></div>
+        <div class="intro-visual-text"><strong>Applied creative resilience</strong>Spoken word performance and mindfulness frameworks that make psychological tools accessible at every level of an organization.</div>
+      </div>
+      <div class="intro-visual-item">
+        <div class="intro-visual-dot"></div>
+        <div class="intro-visual-text"><strong>The tech-human bridge</strong>Consulting on how AI and internal tools are implemented — so your technology works with your people, not against them.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-block">
+        <div class="stat-num">73<span class="stat-unit">%</span></div>
+        <div class="stat-label">of transformations fail due to people factors</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">4<span class="stat-unit">×</span></div>
+        <div class="stat-label">higher retention in psychologically safe workplaces</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">6<span class="stat-unit">mo</span></div>
+        <div class="stat-label">to measurable culture shift with our total re-wire</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="services-section">
+    <div class="section-eyebrow">Our solutions</div>
+    <h2>Four ways to work<br>with More <em>Human.</em></h2>
+    <p class="section-intro">From a single keynote to a full organizational re-wire — every engagement is built around your people, your pressures, and your goals.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <span class="service-tag">Best for culture launches & annual meetings</span>
+        <h3>Speaking & immersive workshops</h3>
+        <p>A blend of clinical insight and spoken word performance. The "Human Operating System" keynote delivers the 3 Ps framework and creates a collective reset moment your team won't forget.</p>
+        <div class="service-price" style="margin-bottom:12px">From $12,500 · Single event or Momentum Series</div>
+        <span class="service-link">Learn more</span>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <span class="service-tag">Best for executive retention</span>
+        <h3>1:1 performance & wellness coaching</h3>
+        <p>A hybrid of developmental coaching and psychological durability. Bi-weekly sessions, a personal resilience roadmap, and ongoing support tools for leaders carrying the weight of transformation.</p>
+        <div class="service-price" style="margin-bottom:12px">From $2,500/mo · Individual or team blocks</div>
+        <span class="service-link">Learn more</span>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <span class="service-tag">Best for M&A and high turnover</span>
+        <h3>Strategic culture consulting</h3>
+        <p>Systems-level interviews, anonymous feedback reporting, and a Culture Health Scorecard — followed by a 12-month strategic integration plan that aligns your tech goals with human capacity.</p>
+        <div class="service-price" style="margin-bottom:12px">From $15,000 · 30 or 60-day engagements</div>
+        <span class="service-link">Learn more</span>
+      </div>
+      <div class="service-card featured">
+        <div class="service-num">04</div>
+        <span class="service-tag">Premier engagement</span>
+        <h3>The total system re-wire</h3>
+        <p>Our most comprehensive offering. A full 6-month partnership: audit + activation event + leadership coaching + tech-wellness bridge. Built for organizations ready to make transformation permanent.</p>
+        <div class="service-price" style="margin-bottom:12px">From $12,000/mo · 6-month minimum</div>
+        <span class="service-link">Learn more</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-section">
+    <div class="section-eyebrow">How we work</div>
+    <h2>A partnership,<br>not a <em>prescription.</em></h2>
+    <p class="section-intro">We don't arrive with a template. Every engagement begins with deep discovery — because the organizations that need us most don't fit standard solutions.</p>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-num">01</div>
+        <div class="step-line"></div>
+        <div class="step-title">Discover</div>
+        <div class="step-desc">Systems-level interviews and clinical assessment to surface what's actually driving friction, fatigue, and turnover in your organization.</div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">02</div>
+        <div class="step-line"></div>
+        <div class="step-title">Activate</div>
+        <div class="step-desc">A company-wide event that lowers defenses, introduces new cultural language, and creates the collective momentum transformation requires.</div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">03</div>
+        <div class="step-line"></div>
+        <div class="step-title">Integrate</div>
+        <div class="step-desc">Ongoing 1:1 and group coaching that builds the habits and psychological infrastructure to make the shift stick at every level.</div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">04</div>
+        <div class="step-line"></div>
+        <div class="step-title">Sustain</div>
+        <div class="step-desc">Technology-wellness bridge consulting — ensuring your AI tools, Slack culture, and project systems reinforce human performance rather than erode it.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="about-section">
+    <div class="about-left">
+      <div class="section-eyebrow">About us</div>
+      <h2>Two disciplines.<br>One <em>integrated</em> approach.</h2>
+      <p>More Human was built on a simple observation: the firms that help organizations perform better rarely understand the human beings inside them. We do — because we come from inside the human experience, not outside it.</p>
+      <button style="background:var(--gold);color:var(--navy);border:none;padding:12px 24px;font-size:14px;font-weight:500;cursor:pointer;font-family:var(--font-sans)">Meet the team</button>
+    </div>
+    <div class="about-right">
+      <div class="about-card">
+        <div class="about-header">
+          <div class="about-initials">RS</div>
+          <div>
+            <div class="about-name">Robert Sawyer</div>
+            <div class="about-role">Clinical Systems & Organizational Psychology</div>
+          </div>
+        </div>
+        <div class="about-bio">Robert brings a trauma-informed systems lens to organizational culture — conducting deep diagnostic work that reveals the behavioral patterns and communication bottlenecks traditional consulting misses. His work bridges clinical psychology with C-suite strategy.</div>
+      </div>
+      <div class="about-card">
+        <div class="about-header">
+          <div class="about-initials">JH</div>
+          <div>
+            <div class="about-name">Jordan Holmes</div>
+            <div class="about-role">Creative Performance & Applied Resilience</div>
+          </div>
+        </div>
+        <div class="about-bio">Jordan combines spoken word performance with applied mindfulness to create organizational moments that actually change behavior. She makes complex psychological frameworks accessible — and unforgettable — at every level of an organization.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="logos-section">
+    <div class="logos-label">Trusted by leaders across industries</div>
+    <div class="logos-row">
+      <span class="logo-pill">Healthcare</span>
+      <span class="logo-pill">Technology</span>
+      <span class="logo-pill">Financial Services</span>
+      <span class="logo-pill">Manufacturing</span>
+      <span class="logo-pill">Higher Education</span>
+      <span class="logo-pill">Government</span>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <div class="contact-left">
+      <div class="section-eyebrow">Get in touch</div>
+      <h2>Speak with a human performance consultant.</h2>
+      <p>Sign up for a free 30-minute discovery call to discuss what's happening in your organization and learn how More Human can help activate lasting change.</p>
+      <div class="contact-details">
+        <div class="contact-detail"><div class="label">General inquiries</div><div class="val">hello@morehuman.co</div></div>
+        <div class="contact-detail"><div class="label">Speaking & keynotes</div><div class="val">speaking@morehuman.co</div></div>
+        <div class="contact-detail"><div class="label">Availability</div><div class="val">National & virtual engagements</div></div>
+      </div>
+    </div>
+    <div class="contact-right">
+      <h3>Start the conversation.</h3>
+      <div class="form">
+        <div class="form-row">
+          <div class="field"><label>First name</label><input type="text" placeholder="Jane" /></div>
+          <div class="field"><label>Last name</label><input type="text" placeholder="Smith" /></div>
+        </div>
+        <div class="field"><label>Work email</label><input type="email" placeholder="jane@company.com" /></div>
+        <div class="field"><label>Company & role</label><input type="text" placeholder="Acme Corp — VP of People" /></div>
+        <div class="field">
+          <label>I'm interested in</label>
+          <select style="background:white;border:1px solid var(--border);padding:12px 14px;font-size:14px;color:var(--text);font-family:var(--font-sans);outline:none;border-radius:0">
+            <option>Speaking & workshops</option>
+            <option>1:1 coaching</option>
+            <option>Culture audit</option>
+            <option>Total system re-wire</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="field"><label>What's on your mind?</label><textarea placeholder="Tell us what your organization is facing..."></textarea></div>
+        <button class="form-submit">Send message</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">More <em>Human</em></div>
+    <div class="footer-copy">© 2025 More Human Co. All rights reserved.</div>
+    <div class="footer-links"><a>LinkedIn</a><a>Instagram</a><a>Privacy</a><a>Terms</a></div>
+  </footer>
+</div>
