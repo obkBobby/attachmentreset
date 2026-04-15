@@ -1,0 +1,311 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.site{background:#f8f6f1;color:#1c1c1a;min-height:100vh}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:28px 48px;background:#f8f6f1;border-bottom:0.5px solid rgba(0,0,0,0.08)}
+.logo{font-size:20px;font-weight:500;letter-spacing:-0.3px;color:#1c1c1a}
+.logo span{color:#4a3728}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:14px;color:#5a5a54;text-decoration:none;cursor:pointer}
+.nav-links a:hover{color:#1c1c1a}
+.nav-cta{background:#2d4a2d;color:#e8f0e8;border:none;padding:10px 22px;border-radius:4px;font-size:14px;cursor:pointer;font-family:var(--font-sans)}
+.nav-cta:hover{background:#3b5e3b}
+.hero{background:#2d4a2d;padding:100px 48px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.hero-label{font-size:12px;letter-spacing:2px;color:#8fb88f;text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-size:52px;font-weight:500;color:#f0ebe3;line-height:1.1;letter-spacing:-1px;margin-bottom:24px}
+.hero h1 em{font-style:italic;color:#c4a882}
+.hero-sub{font-size:18px;color:#8fb88f;line-height:1.7;margin-bottom:36px}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+.btn-primary{background:#c4a882;color:#1c1c1a;border:none;padding:14px 28px;border-radius:4px;font-size:15px;cursor:pointer;font-weight:500;font-family:var(--font-sans)}
+.btn-primary:hover{background:#d4b892}
+.btn-ghost{background:transparent;color:#f0ebe3;border:1px solid rgba(240,235,227,0.3);padding:14px 28px;border-radius:4px;font-size:15px;cursor:pointer;font-family:var(--font-sans)}
+.btn-ghost:hover{border-color:rgba(240,235,227,0.6)}
+.hero-right{padding:40px;background:rgba(255,255,255,0.05);border-radius:8px;border:0.5px solid rgba(255,255,255,0.1)}
+.hero-stat{margin-bottom:32px;padding-bottom:32px;border-bottom:0.5px solid rgba(255,255,255,0.08)}
+.hero-stat:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.hero-stat-num{font-size:36px;font-weight:500;color:#c4a882;line-height:1}
+.hero-stat-label{font-size:14px;color:#8fb88f;margin-top:6px}
+.section{padding:80px 48px}
+.section-label{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#7a6a5a;margin-bottom:16px}
+.section h2{font-size:36px;font-weight:500;color:#1c1c1a;letter-spacing:-0.5px;line-height:1.2;margin-bottom:24px}
+.section-intro{font-size:17px;color:#5a5a54;line-height:1.8;max-width:600px}
+.divider{height:0.5px;background:rgba(0,0,0,0.1);margin:0 48px}
+.what-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;margin-top:48px;background:rgba(0,0,0,0.06);border-radius:8px;overflow:hidden}
+.what-card{background:#f8f6f1;padding:36px 28px}
+.what-icon{width:36px;height:36px;background:#2d4a2d;border-radius:4px;margin-bottom:20px;display:flex;align-items:center;justify-content:center}
+.what-icon span{color:#8fb88f;font-size:16px;font-weight:500}
+.what-card h3{font-size:16px;font-weight:500;color:#1c1c1a;margin-bottom:10px}
+.what-card p{font-size:14px;color:#6a6a64;line-height:1.7}
+.how-section{background:#1c1c1a;padding:80px 48px}
+.how-section .section-label{color:#5a5a54}
+.how-section h2{color:#f0ebe3}
+.how-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;margin-top:48px}
+.how-step{border-top:2px solid #2d4a2d;padding-top:24px}
+.step-num{font-size:12px;color:#4a6a4a;margin-bottom:12px;letter-spacing:1px}
+.step-title{font-size:16px;font-weight:500;color:#f0ebe3;margin-bottom:10px}
+.step-desc{font-size:14px;color:#6a6a64;line-height:1.7}
+.offerings-section{padding:80px 48px;background:#f0ebe3}
+.offerings-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:48px}
+.offering-card{background:#f8f6f1;border:0.5px solid rgba(0,0,0,0.1);border-radius:8px;padding:36px;position:relative;overflow:hidden}
+.offering-card.featured{background:#2d4a2d;border-color:transparent}
+.offering-num{font-size:11px;letter-spacing:2px;color:#7a6a5a;margin-bottom:16px}
+.offering-card.featured .offering-num{color:#4a7a4a}
+.offering-card h3{font-size:20px;font-weight:500;color:#1c1c1a;margin-bottom:10px}
+.offering-card.featured h3{color:#f0ebe3}
+.offering-card .offering-sub{font-size:13px;color:#7a6a5a;margin-bottom:16px;font-style:italic}
+.offering-card.featured .offering-sub{color:#6a9a6a}
+.offering-desc{font-size:14px;color:#5a5a54;line-height:1.7;margin-bottom:20px}
+.offering-card.featured .offering-desc{color:#8fb88f}
+.offering-price{font-size:15px;font-weight:500;color:#4a3728}
+.offering-card.featured .offering-price{color:#c4a882}
+.offering-tag{display:inline-block;font-size:11px;padding:4px 10px;border-radius:99px;background:#e8e0d0;color:#4a3728;margin-bottom:16px}
+.offering-card.featured .offering-tag{background:rgba(196,168,130,0.2);color:#c4a882}
+.about-section{padding:80px 48px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px}
+.about-card{background:#f0ebe3;border-radius:8px;padding:40px}
+.about-initials{width:56px;height:56px;border-radius:50%;background:#2d4a2d;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:500;color:#8fb88f;margin-bottom:20px}
+.about-card h3{font-size:20px;font-weight:500;color:#1c1c1a;margin-bottom:4px}
+.about-role{font-size:13px;color:#7a6a5a;margin-bottom:16px;letter-spacing:0.5px}
+.about-bio{font-size:14px;color:#5a5a54;line-height:1.8}
+.contact-section{background:#2d4a2d;padding:80px 48px}
+.contact-section .section-label{color:#4a7a4a}
+.contact-section h2{color:#f0ebe3;max-width:500px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:48px;align-items:start}
+.contact-form{display:flex;flex-direction:column;gap:16px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-field{display:flex;flex-direction:column;gap:6px}
+.form-field label{font-size:12px;color:#6a9a6a;letter-spacing:0.5px}
+.form-field input,.form-field textarea,.form-field select{background:rgba(255,255,255,0.07);border:0.5px solid rgba(255,255,255,0.15);border-radius:4px;padding:12px 14px;font-size:14px;color:#f0ebe3;font-family:var(--font-sans);outline:none}
+.form-field input::placeholder,.form-field textarea::placeholder{color:rgba(240,235,227,0.3)}
+.form-field textarea{height:100px;resize:none}
+.form-submit{background:#c4a882;color:#1c1c1a;border:none;padding:14px;border-radius:4px;font-size:15px;font-weight:500;cursor:pointer;font-family:var(--font-sans);margin-top:4px}
+.form-submit:hover{background:#d4b892}
+.contact-info{padding-top:8px}
+.contact-info h3{font-size:18px;font-weight:500;color:#f0ebe3;margin-bottom:16px}
+.contact-info p{font-size:15px;color:#8fb88f;line-height:1.8;margin-bottom:32px}
+.contact-detail{margin-bottom:16px}
+.contact-detail .label{font-size:11px;letter-spacing:1.5px;color:#4a7a4a;text-transform:uppercase;margin-bottom:4px}
+.contact-detail .value{font-size:15px;color:#c4a882}
+.footer{background:#161614;padding:32px 48px;display:flex;justify-content:space-between;align-items:center}
+.footer-logo{font-size:16px;font-weight:500;color:#f0ebe3}
+.footer-copy{font-size:13px;color:#3a3a36}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:13px;color:#3a3a36;text-decoration:none}
+.footer-links a:hover{color:#6a6a64}
+</style>
+
+<div class="site">
+  <nav class="nav">
+    <div class="logo">More <span>Human</span></div>
+    <div class="nav-links">
+      <a>What we do</a>
+      <a>How we work</a>
+      <a>Services</a>
+      <a>About</a>
+    </div>
+    <button class="nav-cta">Book a conversation</button>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <div class="hero-label">Organizational culture & human performance</div>
+      <h1>As technology scales, <em>your people</em> must too.</h1>
+      <p class="hero-sub">We partner with organizations navigating digital transformation — strengthening the human infrastructure that business results depend on.</p>
+      <div class="hero-btns">
+        <button class="btn-primary">Start a conversation</button>
+        <button class="btn-ghost">See our approach</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat">
+        <div class="hero-stat-num">4 Ps</div>
+        <div class="hero-stat-label">People · Process · Proactivity · Purpose</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">2 disciplines</div>
+        <div class="hero-stat-label">Clinical psychology + creative performance</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">1 mission</div>
+        <div class="hero-stat-label">Organizations that are measurably more human</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-label">What we do</div>
+    <h2>We build the internal infrastructure<br>your strategy depends on.</h2>
+    <p class="section-intro">Most transformation efforts fail not because of bad strategy — but because the human system underneath it hasn't been fortified. We fix that.</p>
+    <div class="what-grid">
+      <div class="what-card">
+        <div class="what-icon"><span>P</span></div>
+        <h3>People</h3>
+        <p>Developing the psychological durability and relational capacity your teams need to perform under pressure.</p>
+      </div>
+      <div class="what-card">
+        <div class="what-icon"><span>P</span></div>
+        <h3>Process</h3>
+        <p>Auditing how technology and workflow design are impacting the human experience — then rebuilding them intentionally.</p>
+      </div>
+      <div class="what-card">
+        <div class="what-icon"><span>P</span></div>
+        <h3>Proactivity</h3>
+        <p>Shifting culture from reactive to generative — creating systems where people move toward challenges, not away from them.</p>
+      </div>
+      <div class="what-card">
+        <div class="what-icon"><span>P</span></div>
+        <h3>Purpose</h3>
+        <p>Aligning individual meaning with organizational mission — so the work itself becomes the motivation.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="how-section">
+    <div class="section-label">How we work</div>
+    <h2 style="font-size:36px;font-weight:500;letter-spacing:-0.5px;line-height:1.2;margin-bottom:16px;color:#f0ebe3">A partnership, not a prescription.</h2>
+    <p style="font-size:17px;color:#5a5a54;line-height:1.8;max-width:600px">We don't arrive with a template. Every engagement begins with deep discovery — because the organizations that need us most are the ones whose problems don't fit standard solutions.</p>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-num">01 — Discover</div>
+        <div class="step-title">The culture audit</div>
+        <div class="step-desc">Systems-level interviews and clinical assessment to identify what's actually driving friction, fatigue, and turnover.</div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">02 — Activate</div>
+        <div class="step-title">The reset moment</div>
+        <div class="step-desc">A company-wide event that lowers defenses, introduces new cultural language, and creates collective momentum.</div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">03 — Integrate</div>
+        <div class="step-title">Sustained coaching</div>
+        <div class="step-desc">Ongoing 1:1 and group coaching for leaders and teams — building the habits that make transformation stick.</div>
+      </div>
+      <div class="how-step">
+        <div class="step-num">04 — Sustain</div>
+        <div class="step-title">The tech-human bridge</div>
+        <div class="step-desc">Consulting on how internal tools and AI are implemented — so your technology works with your people, not against them.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="offerings-section">
+    <div class="section-label">Our services</div>
+    <h2>Four ways to work with us.</h2>
+    <p class="section-intro">From a single keynote to a full organizational re-wire — every engagement is designed to move the needle on what matters.</p>
+    <div class="offerings-grid">
+      <div class="offering-card">
+        <div class="offering-num">01</div>
+        <span class="offering-tag">Best for culture launches</span>
+        <h3>Speaking & immersive workshops</h3>
+        <div class="offering-sub">The Human Operating System keynote</div>
+        <p class="offering-desc">A blend of clinical insight and spoken word performance. Introduces the 3 Ps framework — Pause, Process, Proceed — and creates a collective reset moment for your organization.</p>
+        <div class="offering-price">From $12,500 · Single event or series available</div>
+      </div>
+      <div class="offering-card">
+        <div class="offering-num">02</div>
+        <span class="offering-tag">Best for executive retention</span>
+        <h3>1:1 performance & wellness coaching</h3>
+        <div class="offering-sub">For leaders at risk of burnout</div>
+        <p class="offering-desc">A hybrid of developmental coaching and psychological durability work. Bi-weekly sessions, a personal resilience roadmap, and ongoing support tools for high-stakes leaders.</p>
+        <div class="offering-price">From $2,500/mo · Individual or team blocks</div>
+      </div>
+      <div class="offering-card">
+        <div class="offering-num">03</div>
+        <span class="offering-tag">Best for M&A and high turnover</span>
+        <h3>Strategic culture consulting</h3>
+        <div class="offering-sub">The culture audit</div>
+        <p class="offering-desc">A deep diagnostic of your organization's human infrastructure. Delivers a Culture Health Scorecard, anonymous feedback report, and 12-month strategic integration plan.</p>
+        <div class="offering-price">From $15,000 · 30 or 60-day engagements</div>
+      </div>
+      <div class="offering-card featured">
+        <div class="offering-num">04</div>
+        <span class="offering-tag">Premier engagement</span>
+        <h3>The total system re-wire</h3>
+        <div class="offering-sub">Full 6-month partnership</div>
+        <p class="offering-desc">Audit + activation event + leadership coaching + tech-wellness bridge consulting. Our most comprehensive offering — for organizations ready to make transformation permanent.</p>
+        <div class="offering-price">From $12,000/mo · 6-month minimum</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section">
+    <div class="section-label">About us</div>
+    <h2>Two disciplines.<br>One integrated approach.</h2>
+    <p class="section-intro">More Human was built on a simple observation: the firms that help organizations perform better rarely understand the human beings inside them. We do.</p>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-initials">RS</div>
+        <h3>Robert Sawyer</h3>
+        <div class="about-role">Clinical Systems & Organizational Psychology</div>
+        <p class="about-bio">Robert brings a trauma-informed systems lens to organizational culture — conducting deep diagnostic work that reveals the behavioral patterns and communication bottlenecks that traditional consulting misses. His work bridges clinical psychology with C-suite strategy.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-initials">JH</div>
+        <h3>Jordan Holmes</h3>
+        <div class="about-role">Creative Performance & Applied Resilience</div>
+        <p class="about-bio">Jordan combines spoken word performance with applied mindfulness to create the kind of organizational moments that actually change behavior. Her work makes complex psychological frameworks accessible — and unforgettable — for every level of an organization.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="section-label">Get in touch</div>
+    <h2>Ready to make your organization more human?</h2>
+    <div class="contact-grid">
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-field">
+            <label>First name</label>
+            <input type="text" placeholder="Jane" />
+          </div>
+          <div class="form-field">
+            <label>Last name</label>
+            <input type="text" placeholder="Smith" />
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Work email</label>
+          <input type="email" placeholder="jane@company.com" />
+        </div>
+        <div class="form-field">
+          <label>Company & role</label>
+          <input type="text" placeholder="Acme Corp — VP of People" />
+        </div>
+        <div class="form-field">
+          <label>What's on your mind?</label>
+          <textarea placeholder="Tell us what's happening in your organization..."></textarea>
+        </div>
+        <button class="form-submit">Send message</button>
+      </div>
+      <div class="contact-info">
+        <h3>Start with a conversation.</h3>
+        <p>We offer a complimentary 30-minute discovery call for organizations considering an engagement. No pitch — just an honest conversation about what you're facing.</p>
+        <div class="contact-detail">
+          <div class="label">Email</div>
+          <div class="value">hello@morehuman.co</div>
+        </div>
+        <div class="contact-detail">
+          <div class="label">Engagements</div>
+          <div class="value">Available nationally & virtually</div>
+        </div>
+        <div class="contact-detail">
+          <div class="label">Speaking inquiries</div>
+          <div class="value">speaking@morehuman.co</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-logo">More Human</div>
+    <div class="footer-copy">© 2025 More Human Co. All rights reserved.</div>
+    <div class="footer-links">
+      <a>Privacy</a>
+      <a>LinkedIn</a>
+      <a>Instagram</a>
+    </div>
+  </footer>
+</div>
