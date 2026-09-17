@@ -1,0 +1,12 @@
+{
+  "name": "relationsync-cohort-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static RelationSync cohort inquiry page",
+  "scripts": {
+    "test": "node tests/run.cjs",
+    "test:release": "node tests/release-audit.cjs",
+    "test:browser": "node tests/cohort.cjs"
+  },
+  "devDependencies": { "playwright": "1.62.1" }
+}
