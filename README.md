@@ -31,7 +31,7 @@ The tests save full-page screenshots to:
 
 ## Design
 
-A large outcome-led editorial hero pairs the original coach photo with a compact description of the live format. Cream, warm white, taupe, terracotta, dark terracotta, and charcoal preserve the brand. Georgia display type pairs with a local sans-serif stack, so the page has no remote-font dependency. Dark terracotta, rather than the lighter decorative terracotta, provides contrast for small button and label text. The pattern example and numbered session sequence explain the work before the invitation. Native details elements keep FAQs usable without scripts.
+A close structural recreation of the StoryOS Launch Room reference with original RelationSync copy: a faint-grid hero and tilted black cohort card, proof-first layout, numbered recognition rows, black coach/method section, alternating roadmap panels, structured delivery rows, dark takeaways band, split fit card, ruled FAQ, and final blue inquiry panel. The current approved palette is RobertSawyer.co white, #111111 black and #0034e3 electric blue; the previous warm/serif design is superseded. Heavy Arial/Helvetica headlines match the reference typography. Native details keep FAQs usable without scripts. The blue/white R favicon ships as SVG, multi-size ICO and a 180px Apple touch icon.
 
 ## Content and launch boundaries
 

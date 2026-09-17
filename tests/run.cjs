@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { spawn } = require('node:child_process');
 const root = path.resolve(__dirname, '..');
-const types = {'.html':'text/html','.css':'text/css','.jpg':'image/jpeg','.mp4':'video/mp4'};
+const types = {'.html':'text/html','.css':'text/css','.jpg':'image/jpeg','.mp4':'video/mp4','.svg':'image/svg+xml','.ico':'image/x-icon','.png':'image/png'};
 const server = http.createServer((req,res)=>{
   const pathname = decodeURIComponent(new URL(req.url,'http://local').pathname);
   const target = path.resolve(root,'.'+(pathname==='/'?'/index.html':pathname));
@@ -25,5 +25,6 @@ function run(file, base) {
     const base=`http://127.0.0.1:${server.address().port}`;
     await run('cohort.cjs',base);
     await run('release-audit.cjs',base);
+    await run('visual-direction.cjs',base);
   } finally { await new Promise(resolve=>server.close(resolve)); }
 })().catch(error=>{console.error(error);process.exitCode=1;});

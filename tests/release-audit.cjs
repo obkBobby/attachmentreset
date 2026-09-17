@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const http = require('node:http');
 const root = path.resolve(__dirname, '..');
-const types = {'.html':'text/html','.css':'text/css','.jpg':'image/jpeg','.mp4':'video/mp4','.js':'text/javascript'};
+const types = {'.html':'text/html','.css':'text/css','.jpg':'image/jpeg','.mp4':'video/mp4','.js':'text/javascript','.svg':'image/svg+xml','.ico':'image/x-icon','.png':'image/png'};
 const server = http.createServer((req,res)=>{
  const pathname = decodeURIComponent(new URL(req.url,'http://local').pathname);
  const target = path.resolve(root,'.'+(pathname==='/'?'/index.html':pathname));

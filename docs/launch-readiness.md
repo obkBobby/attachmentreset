@@ -1,10 +1,11 @@
 # RelationSync launch readiness
 
 ## Approved positioning
+Latest visual correction supersedes the original warm palette: closely match https://story-os.ai/launch-room layout using RobertSawyer.co white/black/#0034e3, with a favicon. All original program, publication and inquiry boundaries remain unchanged.
 RelationSync is a facilitated-practice cohort for individual participants, whether single or partnered. Short teaching, structured practice and selected live coaching. It is not a couples treatment group, community membership, app, or an offsession coaching channel.
 
 ## Current build scope
-Static marketing website on the existing repository, preserving warm palette and coach.jpg. Existing coaching-client proof is sourced from https://robertsawyer.co/#client-stories, not represented as cohort-specific evidence. Inquiry uses the owner's existing email address. An email-draft link does not capture leads, enroll someone, reserve a place, or send anything from the website.
+Static marketing website on the existing repository, preserving coach.jpg and using the newly approved RSCo palette. Existing coaching-client proof is sourced from https://robertsawyer.co/#client-stories, not represented as cohort-specific evidence. Inquiry uses the owner's existing email address. An email-draft link does not capture leads, enroll someone, reserve a place, or send anything from the website.
 
 ## Before paid enrollment opens
 - Approve cohort dates, timezone, duration, session frequency and price. These are deliberately not inferred from old Attachment Reset copy or competitor programs.

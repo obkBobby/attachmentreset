@@ -11,6 +11,7 @@ const assert = require('node:assert/strict');
     await explore.click();
     assert.equal(new URL(page.url()).hash,'#cohort');
     assert.ok(await page.locator('#cohort').isVisible());
+    await page.waitForFunction(()=>{const r=document.querySelector('#cohort').getBoundingClientRect();return r.top<innerHeight&&r.bottom>0;});
     console.log('PASS primary journey: outcome headline and cohort navigation');
     for (const id of ['pattern','practice','roadmap','takeaways','coach','fit','stories','questions']) {
       assert.equal(await page.locator(`#${id}`).count(),1,`Required cohort section: ${id}`);
@@ -45,7 +46,7 @@ const assert = require('node:assert/strict');
       const mail=new URL(await page.getByRole('link',{name:'Email Robert about the cohort',exact:true}).getAttribute('href'));
       assert.equal(mail.pathname,'robertsawyerco@gmail.com');
       assert.equal(mail.searchParams.get('subject'),'RelationSync cohort inquiry');
-      await page.evaluate(()=>scrollTo(0,0));
+      await page.evaluate(()=>{document.activeElement?.blur();scrollTo(0,0);});
       if(width!==320) await page.screenshot({path:`/tmp/relationsync-cohort-${width===1440?'desktop':'mobile'}.png`,fullPage:true});
       console.log(`PASS ${width}px: text containment, keyboard FAQs, email URI${width!==320?', screenshot saved':''}`);
     }

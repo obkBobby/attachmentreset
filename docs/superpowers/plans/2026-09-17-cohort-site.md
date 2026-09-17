@@ -1,5 +1,7 @@
 # RelationSync cohort site implementation plan
 
+> Visual revision approved after v1: use StoryOS launch-room's actual layout and heavy sans-serif typography with RobertSawyer.co white/black/#0034e3. Include SVG/ICO/Apple favicon. This supersedes the original warm palette below; the original record is retained as history. Revision tests: `tests/visual-direction.cjs`, included in `npm test`.
+
 ## Approved design / specification
 User approved building a live facilitated-practice cohort site for individuals, single or partnered. Short teaching, guided exercises, selected coaching. No app, community platform, Podia, or offsession coaching. Preserve cream #F5F0E8, warm-white #FAF7F2, taupe #C4B8A8, terracotta #C1654A, dark terracotta #A0502E, charcoal #2C2420. StoryOS launch-room-inspired hierarchy, not a copied page. Art of Accomplishment informs experiential learning explanation only, not curriculum copying. Retain original coach.jpg. No manufactured testimonials, dates, prices, outcome guarantees or capacity scarcity. No em dashes. Copy should feel human, grounded, and specific. Explain individuals participate independently regardless of relationship status. Practice can use fictional scenarios; passing is allowed. Participants do not counsel peers. No private coaching guarantee, no therapeutic or crisis-service promises.
 
