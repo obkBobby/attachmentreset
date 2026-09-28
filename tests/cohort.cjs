@@ -5,7 +5,7 @@ const assert = require('node:assert/strict');
   const page = await browser.newPage({viewport:{width:1440,height:1000}});
   try {
     await page.goto(process.env.SITE_URL || 'http://127.0.0.1:8766');
-    assert.equal((await page.locator('h1').innerText()).replace(/\s+/g,' ').trim(), 'Know the pattern. Change what happens next.', 'Approved cohort outcome headline');
+    assert.equal((await page.locator('h1').innerText()).replace(/\s+/g,' ').trim(), 'Same fights. Same doubts. What comes next?', 'Approved buyer-language headline');
     const explore = page.getByRole('link', {name:'Explore the cohort', exact:true});
     assert.equal(await explore.getAttribute('href'), '#cohort');
     await explore.click();
